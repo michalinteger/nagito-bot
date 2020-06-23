@@ -1,0 +1,22 @@
+{
+  "name": "nagito_bot",
+  "version": "1.0.0",
+  "description": "HOPE IS THE ONLY WAY",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MinecraftPlayYT/nagito_bot.git"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "MinecraftPlayYT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MinecraftPlayYT/nagito_bot/issues"
+  },
+  "homepage": "https://github.com/MinecraftPlayYT/nagito_bot#readme"
+}
