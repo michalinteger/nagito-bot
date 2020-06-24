@@ -1,4 +1,4 @@
-# nagito_bot
+# nagito-bot
 
 ## Description
 
