@@ -1,17 +1,22 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
-const path = require('path');    
-const filePath = path.join(__dirname, 'start.html');
+const path = require('path')
+
+var configContents = fs.readFileSync(filePath = path.join("./config.json"), encoding = 'utf-8');
+
+var config = JSON.parse(configContents);
+
+var token = config["token"];
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('message', msg => {
-    if (bool(msg.content) === true) {
-        msg.reply('Pong!');
+    if (msg.user != "Nagito Komaeda#3709") {
+        msg.reply('Hope is the only way.');
     }
 });
 
-client.login('');
+client.login(token);
