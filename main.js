@@ -11,14 +11,10 @@ client.on('ready', () => {
 client.on('message', msg => {
     if (msg.author.bot) {
         return
-    } else {
-        if ( msg.mentions.users.has(client.user.id) ) {
-            msg.reply("Hope is the only way.");
-        } else {
-            if (spam) {
-                client.channels.cache.get(msg.channel.id).send("Hope is the only way.");
-            }
-        }
+    } else if ( msg.mentions.users.has(client.user.id) ) {
+        msg.reply("Hope is the only way.");
+    } else if (spam) {
+        client.channels.cache.get(msg.channel.id).send("Hope is the only way.");
     }
 });
 
