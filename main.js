@@ -12,10 +12,12 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     var noPingMsg = client.channels.cache.get(msg.channel.id);
+
     if (msg.author.bot) {
         return;
     } else if ( ( msg.mentions.users.has(client.user.id) || msg.mentions.users.has(client.user.tag) ) && msg.channel.type != "dm") {
         var cmd = msg.content.toLowerCase();
+
         if ( cmd.includes("help") ) {
             msg.reply("HOPE ".repeat(320).trim());
         } else if ( cmd.includes("scary") ) {
@@ -28,13 +30,15 @@ client.on('message', msg => {
         } else {
             msg.reply("Hope is the only way.");
         }
+
     } else if (spam) {
         noPingMsg.send("Hope is the only way.");
     } else if ( msg.channel.type == "dm" ) {
         noPingMsg.send("Hope is the only way.");
     } else {
-        return
+        return;
     }
+
 });
 
 client.login(token);
