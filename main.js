@@ -5,7 +5,7 @@ const path = require('path')
 
 var configContents = fs.readFileSync(filePath = path.join("./config.json"), encoding = 'utf-8');
 
-var config = JSON.parse(configContents);
+const config = JSON.parse(configContents);
 
 var token = config["token"];
 
