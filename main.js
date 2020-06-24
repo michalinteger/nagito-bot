@@ -5,16 +5,6 @@ const { token, spam } = require("./config/config.js");
 
 var boneMeme = "bone on the meat".split(" ");
 
-function sendMsg(text, ping = false, context = null) {
-    if (ping) {
-        msg.reply(text)
-    } else {
-        client.channels.cache.get(msg.channel.id).send(text)
-    }
-    if ( context != null ) {
-        console.log(context)
-    }
-}
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -22,27 +12,42 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+    var noPingMsg = client.channels.cache.get(msg.channel.id);
+    var profilePic = client.user.avatarURL(options = {format: "png", size: 4096});
+
     if (msg.author.bot) {
         return;
     } else if ( ( msg.mentions.users.has(client.user.id) || msg.mentions.users.has(client.user.tag) ) && msg.channel.type != "dm") {
         var cmd = msg.content.toLowerCase();
 
-        if ( cmd == `@${AbortController} info`) {
-            //reserved
+        if ( cmd == `<@!` + client.user.id + `> info`) {
+            var _ = new Discord.MessageEmbed()
+            .setThumbnail(profilePic)
+            .setTitle("nagito-bot")
+            .setColor("0x959595")
+            .setAuthor("github.com/MinecraftPlayYT")
+            .setDescription("HOPE IS THE ONLY WAY")
+            .addField("Abandon despair", "Hope is the only way", inline = true)
+            .setFooter("github.com/MinecraftPlayYT/nagito-bot", client.user.avatarURL(options = {format: "png", size: 32}));
+            noPingMsg.send(msg, _);
+            delete _;
         } else if ( cmd.includes("help") ) {
-            sendMsg("HOPE ".repeat(320).trim(), ping = true);
+            msg.reply("HOPE ".repeat(320).trim());
         } else if ( cmd.includes("scary") ) {
-            sendMsg(client.user.avatarURL(options = {format: "png", size: 4096}), ping = true);
+            msg.reply(profilePic);
         } else if ( cmd.includes(boneMeme[0]) && cmd.includes(boneMeme[1]) && cmd.includes(boneMeme[2]) && cmd.includes(boneMeme[3]) ) {
-            sendMsg("\nMEAT ON THE BONE\nTHE MEAT BONE ON\nON THE MEAT BONE\nMEAT ON THE BONE", ping = true)
+            msg.reply("MEAT ON THE BONE");
+            msg.reply("THE MEAT BONE ON");
+            msg.reply("ON THE MEAT BONE");
+            msg.reply("MEAT ON THE BONE");
         } else {
-            sendMsg("Hope is the only way.", ping = true);
+            msg.reply("Hope is the only way.");
         }
 
     } else if (spam) {
-        sendMsg("Hope is the only way.");
+        noPingMsg.send("Hope is the only way.");
     } else if ( msg.channel.type == "dm" ) {
-        sendMsg("Hope is the only way.");
+        noPingMsg.send("Hope is the only way.");
     } else {
         return;
     }
