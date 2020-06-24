@@ -11,14 +11,15 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+    var noPingMsg = client.channels.cache.get(msg.channel.id);
     if (msg.author.bot) {
-        return
+        return;
     } else if ( ( msg.mentions.users.has(client.user.id) || msg.mentions.users.has(client.user.tag) ) && msg.channel.type != "dm") {
         var cmd = msg.content.toLowerCase();
         if ( cmd.includes("help") ) {
-            msg.reply("HOPE ".repeat(320).trim())
+            msg.reply("HOPE ".repeat(320).trim());
         } else if ( cmd.includes("scary") ) {
-            msg.reply(client.user.avatarURL(format = "png", size = 4096));
+            msg.reply(client.user.avatarURL(options = {format: "png", size: 4096}));
         } else if ( cmd.includes(boneMeme[0]) && cmd.includes(boneMeme[1]) && cmd.includes(boneMeme[2]) && cmd.includes(boneMeme[3]) ) {
             msg.reply("MEAT ON THE BONE");
             msg.reply("THE MEAT BONE ON");
@@ -28,9 +29,11 @@ client.on('message', msg => {
             msg.reply("Hope is the only way.");
         }
     } else if (spam) {
-        client.channels.cache.get(msg.channel.id).send("Hope is the only way.");
+        noPingMsg.send("Hope is the only way.");
     } else if ( msg.channel.type == "dm" ) {
-        client.channels.cache.get(msg.channel.id).send("Hope is the only way.");
+        noPingMsg.send("Hope is the only way.");
+    } else {
+        return
     }
 });
 
