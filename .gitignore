@@ -1,2 +1,8 @@
+## Node modules
 **/node_modules
-/config
+
+## Envionment vars
+/.env
+
+## Server dependent config
+/servers
