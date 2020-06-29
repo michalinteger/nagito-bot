@@ -1,8 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const { token, spam } = require("./config/config.js");
-
+try {
+    const { token, spam } = require("./config/config.js");
+} catch(error) {
+    console.log("A config file was not found or could not be loaded.");
+    console.log("Please create a config file in ./config/config.js");
+    console.log("An example can be found in ./examples");
+    return 1;
+}
 var boneMeme = "bone on the meat".split(" ");
 
 
