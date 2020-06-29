@@ -1,6 +1,12 @@
 const dotenv = require("dotenv").config()
 
-module.exports = {
-    token: process.env.token,
-    spam: process.env.spam,
+const token = process.env.token;
+if (process.env.spam == "true") {
+    var spam = true;
+} else {
+    var spam = false;
 }
+
+var toExport = [token, spam]
+
+module.exports = {}
