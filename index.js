@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const dotenv = require("dotenv")
+const dotenv = require("dotenv").config()
 const fs = require("fs")
 
 function _() {
@@ -9,7 +9,7 @@ function _() {
         return file;
     } catch(error) {
         try {
-            return dotenv.config().parsed;
+            return process.env;
         } catch(error) {
             console.log("A config file was not found or could not be loaded.");
             console.log("Please create a config file in ./config/config.js");
