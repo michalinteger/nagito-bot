@@ -19,11 +19,11 @@ function _() {
     }
 };
 var _ = _();
+console.log(fs.readFileSync(".env", options = { encoding: "UTF8"}))
 const { token } = _;
-var { spam } = _; 
+var { spam } = _;
 console.log(_)
 delete _;
-console.log(fs.readFileSync(".env", options = { encoding: "UTF8"}))
 var boneMeme = "bone on the meat".split(" ");
 
 client.on('ready', () => {
