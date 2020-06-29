@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const dotenv = require("dotenv")
+const fs = require("fs")
 
 function _() {
     try {
@@ -17,9 +18,12 @@ function _() {
         }
     }
 };
-const { token, spam } = _();
-console.log(_())
+var _ = _();
+const { token } = _;
+var { spam } = _; 
+console.log(_)
 delete _;
+console.log(fs.readFileSync(".env", options = { encoding: "UTF8"}))
 var boneMeme = "bone on the meat".split(" ");
 
 client.on('ready', () => {
