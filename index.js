@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const dotenv = require("dotenv").config()
-const fs = require("fs")
+const dotenv = require("dotenv").config();
+const fs = require("fs");
 
 function _() {
     try {
@@ -16,7 +16,7 @@ function _() {
 };
 var _ = _();
 const { token } = _;
-var { spam } = _;
+var spam = false;
 delete _;
 var boneMeme = "bone on the meat".split(" ");
 
@@ -24,7 +24,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     //client.channels.cache.get("725300214600171533").send("What is hope?");
     if (spam) {
-        console.log("Spamming is enabled!")
+        console.log("Spamming is enabled!");
     }
 });
 
