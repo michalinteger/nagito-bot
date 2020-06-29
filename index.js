@@ -8,14 +8,10 @@ function _() {
         var file = require("./config/config.js");
         return file;
     } catch(error) {
-        try {
-            return process.env;
-        } catch(error) {
-            console.log("A config file was not found or could not be loaded.");
-            console.log("Please create a config file in ./config/config.js");
-            console.log("An example can be found in ./examples");
-            return 1;
-        }
+        console.log("A config file was not found or could not be loaded.");
+        console.log("Please create a config file in ./config/config.js");
+        console.log("An example can be found in ./examples");
+        return 1;
     }
 };
 var _ = _();
