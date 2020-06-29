@@ -27,6 +27,9 @@ var boneMeme = "bone on the meat".split(" ");
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     //client.channels.cache.get("725300214600171533").send("What is hope?");
+    if (spam) {
+        console.log("Spamming is enabled!")
+    }
 });
 
 client.on('message', msg => {
