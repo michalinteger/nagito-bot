@@ -1,15 +1,20 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const dotenv = require("dotenv")
 
 function _() {
     try {
         var file = require("./config/config.js");
         return file;
     } catch(error) {
-        console.log("A config file was not found or could not be loaded.");
-        console.log("Please create a config file in ./config/config.js");
-        console.log("An example can be found in ./examples");
-        return 1;
+        try {
+            return dotenv.config().parsed;
+        } catch(error) {
+            console.log("A config file was not found or could not be loaded.");
+            console.log("Please create a config file in ./config/config.js");
+            console.log("An example can be found in ./examples");
+            return 1;
+        }
     }
 };
 const { token, spam } = _();
