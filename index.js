@@ -19,10 +19,8 @@ function _() {
     }
 };
 var _ = _();
-console.log(fs.readFileSync(".env", options = { encoding: "UTF8"}))
 const { token } = _;
 var { spam } = _;
-console.log(_)
 delete _;
 var boneMeme = "bone on the meat".split(" ");
 
