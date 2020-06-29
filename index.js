@@ -18,6 +18,7 @@ function _() {
     }
 };
 const { token, spam } = _();
+console.log(_())
 delete _;
 var boneMeme = "bone on the meat".split(" ");
 
