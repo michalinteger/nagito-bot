@@ -3,3 +3,6 @@
 
 ## Envionment vars
 /.env
+
+## Server dependent config
+/servers
