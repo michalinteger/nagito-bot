@@ -10,7 +10,7 @@ function _() {
         console.log("A config file was not found or could not be loaded.");
         console.log("Please create a config file in ./config/config.js");
         console.log("An example can be found in ./examples");
-        return 1;
+        throw "FileNotFoundError";
     }
 };
 var _ = _();
