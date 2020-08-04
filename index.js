@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
+const commandCtl = require("./handlers/command.handler.js")
 
 function _() {
     try {
@@ -12,12 +13,18 @@ function _() {
         console.log("An example can be found in ./examples");
         throw "FileNotFoundError";
     }
-};
+}
+
+function loadCommands() {
+    commands = require("./handlers/command.handler.js");
+}
+
 var _ = _();
 const { token } = _;
 var spam = false;
 delete _;
 var boneMeme = "bone on the meat".split(" ");
+//eval(commandCtl.loadCommands()); //Loads commands
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -51,7 +58,12 @@ client.on('message', msg => {
             msg.reply("HOPE ".repeat(320).trim());
         } else if ( cmd.includes("scary") ) {
             msg.reply(profilePic);
-        } else if ( cmd.includes(boneMeme[0]) && cmd.includes(boneMeme[1]) && cmd.includes(boneMeme[2]) && cmd.includes(boneMeme[3]) ) {
+        } else if (
+            cmd.includes(boneMeme[0]) &&
+            cmd.includes(boneMeme[1]) &&
+            cmd.includes(boneMeme[2]) && 
+            cmd.includes(boneMeme[3])
+        ) { // Where would the weapon be?
             msg.reply("MEAT ON THE BONE");
             msg.reply("THE MEAT BONE ON");
             msg.reply("ON THE MEAT BONE");
