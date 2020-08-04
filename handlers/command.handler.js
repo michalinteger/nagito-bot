@@ -1,13 +1,16 @@
 const fs = require("fs");
-var commandList = fs.readdirSync("commands");
-var commands = new Object();
 
-for ( var commandNr = 0; commandNr < commandList.length; commandNr++ ) {
-    var command = commandList[commandNr];
-    if ( command.includes(".command.js") ) {
-        console.log("var " + command.split(".")[0] + " = require(\"./command/" + command + "\")" + ";");
-        eval("var " + "commands" + command.split(".")[0] + " = require(\"./command/" + command + "\")" + ";");
-    }
+module.exports.listCommands = function () {
+    return fs.readdirSync("commands");
 }
 
-module.exports = commands;
+module.exports.loadCommands = function () {
+    var loader = [];
+    for ( var commandNr = 0; commandNr < commandList.length; commandNr++ ) {
+        var command = commandList[commandNr];
+        if ( command.includes(".command.js") ) {
+            loader = loader + "var " + "commands" + command.split(".")[0] + " = require(\"../command/" + command + "\")" + ";";
+        }
+    }
+    return loader;
+}
