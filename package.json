@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "node index.js",
+    "stop": "pkill npm",
     "test": "nodemon index.js"
   },
   "repository": {
