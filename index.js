@@ -50,10 +50,18 @@ client.on('message', msg => {
     if (msg.author.bot) {
         return;
     } else if ( ( msg.mentions.users.has(client.user.id) || msg.mentions.users.has(client.user.tag) ) && msg.channel.type != "dm") {
+        
         var cmd = msg.content.toLowerCase();
 
         if ( cmd == `<@!` + client.user.id + `> info`) {
-
+            switch (cmd[1]) {
+                case "info":        
+                    noPingMsg.send(msg, _);
+                    delete _;
+                    console.log(msg.author.username + " asked for info.")
+                default:
+                    //msg.reply("Hope is the only way.");
+            }
         } else if ( cmd.includes("help") ) {
             msg.reply("HOPE ".repeat(320).trim());
         } else if (
@@ -77,15 +85,6 @@ client.on('message', msg => {
             
         }
 
-
-        switch (cmd[1]) {
-            case "info":        
-                noPingMsg.send(msg, _);
-                delete _;
-                console.log(msg.author.username + " asked for info.")
-            default:
-                //msg.reply("Hope is the only way.");
-        }
     } else if (spam) {
         noPingMsg.send("Hope is the only way.");
     } else if ( msg.channel.type == "dm" ) {
