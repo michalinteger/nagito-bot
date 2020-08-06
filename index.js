@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
-const commandCtl = require("./handlers/command.handler.js")
+const commandCtl = require("./handlers/command.handler.js");
 
 function _() {
     try {
@@ -23,6 +23,15 @@ var _ = _();
 const { token } = _;
 var spam = false;
 delete _;
+var botInformationEmbed = new Discord.MessageEmbed()
+.setThumbnail(profilePic)
+.setTitle("nagito-bot")
+.setColor("0x959595")
+.setAuthor("Nagito Komaeda")
+.setDescription("HOPE IS THE ONLY WAY")
+.addField("Author", "MinecraftPlayYT#8550", inline = false)
+.addField("Author's GitHub", "github.com/MinecraftPlayYT", inline = false)
+.setFooter("github.com/MinecraftPlayYT/nagito-bot", client.user.avatarURL(options = {format: "png", size: 32}));
 var boneMeme = "bone on the meat".split(" ");
 //eval(commandCtl.loadCommands()); //Loads commands
 
@@ -44,18 +53,14 @@ client.on('message', msg => {
         var cmd = msg.content.toLowerCase();
 
         if ( cmd == `<@!` + client.user.id + `> info`) {
-            var _ = new Discord.MessageEmbed()
-            .setThumbnail(profilePic)
-            .setTitle("nagito-bot")
-            .setColor("0x959595")
-            .setAuthor("github.com/MinecraftPlayYT")
-            .setDescription("HOPE IS THE ONLY WAY")
-            .addField("Abandon despair", "Hope is the only way", inline = true)
-            .setFooter("github.com/MinecraftPlayYT/nagito-bot", client.user.avatarURL(options = {format: "png", size: 32}));
-            noPingMsg.send(msg, _);
-            delete _;
+
         } else if ( cmd.includes("help") ) {
             msg.reply("HOPE ".repeat(320).trim());
+        } else if (
+            cmd.includes("spear") &&
+            cmd.includes("see")
+        ) { // Oh my go i think there's a spear there
+            msg.reply(new Discord.MessageAttachment("./assets/oof.gif"));
         } else if ( cmd.includes("scary") ) {
             msg.reply(profilePic);
         } else if (
@@ -69,9 +74,18 @@ client.on('message', msg => {
             msg.reply("ON THE MEAT BONE");
             msg.reply("MEAT ON THE BONE");
         } else {
-            msg.reply("Hope is the only way.");
+            
         }
 
+
+        switch (cmd[1]) {
+            case "info":        
+                noPingMsg.send(msg, _);
+                delete _;
+                console.log(msg.author.username + " asked for info.")
+            default:
+                //msg.reply("Hope is the only way.");
+        }
     } else if (spam) {
         noPingMsg.send("Hope is the only way.");
     } else if ( msg.channel.type == "dm" ) {
