@@ -9,8 +9,6 @@ function _() {
         return file;
     } catch(error) {
         console.log("A config file was not found or could not be loaded.");
-        console.log("Please create a config file in ./config/config.js");
-        console.log("An example can be found in ./examples");
         throw "FileNotFoundError";
     }
 }
@@ -50,8 +48,7 @@ client.on('message', msg => {
     if (msg.author.bot) {
         return;
     } else if ( ( msg.mentions.users.has(client.user.id) || msg.mentions.users.has(client.user.tag) ) && msg.channel.type != "dm") {
-        
-        var cmd = msg.content.toLowerCase().split(" ");
+        let cmd = msg.content.toLowerCase().split(" ");
 
         if ( cmd == "<@!" + client.user.id + ">") {
             switch (cmd[1]) {
