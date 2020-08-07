@@ -23,17 +23,6 @@ var _ = _();
 const { token } = _;
 var spam = false;
 delete _;
-var botInformationEmbed = new Discord.MessageEmbed()
-.setThumbnail(profilePic)
-.setTitle("nagito-bot")
-.setColor("0x959595")
-.setAuthor("Nagito Komaeda")
-.setDescription("HOPE IS THE ONLY WAY")
-.addField("Author", "MinecraftPlayYT#8550", inline = false)
-.addField("Author's GitHub", "github.com/MinecraftPlayYT", inline = false)
-.setFooter("github.com/MinecraftPlayYT/nagito-bot", client.user.avatarURL(options = {format: "png", size: 32}));
-var boneMeme = "bone on the meat".split(" ");
-//eval(commandCtl.loadCommands()); //Loads commands
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -41,23 +30,33 @@ client.on('ready', () => {
     if (spam) {
         console.log("Spamming is enabled!");
     }
+    var profilePic = client.user.avatarURL(options = {format: "png", size: 4096});
+    var botInformationEmbed = new Discord.MessageEmbed()
+    .setThumbnail(profilePic)
+    .setTitle("nagito-bot")
+    .setColor("0x959595")
+    .setAuthor("Nagito Komaeda")
+    .setDescription("HOPE IS THE ONLY WAY")
+    .addField("Author", "MinecraftPlayYT#8550", inline = false)
+    .addField("Author's GitHub", "github.com/MinecraftPlayYT", inline = false)
+    .setFooter("github.com/MinecraftPlayYT/nagito-bot", client.user.avatarURL(options = {format: "png", size: 32}));
+    var boneMeme = "bone on the meat".split(" ");
+    //eval(commandCtl.loadCommands()); //Loads commands
 });
 
 client.on('message', msg => {
     var noPingMsg = client.channels.cache.get(msg.channel.id);
-    var profilePic = client.user.avatarURL(options = {format: "png", size: 4096});
 
     if (msg.author.bot) {
         return;
     } else if ( ( msg.mentions.users.has(client.user.id) || msg.mentions.users.has(client.user.tag) ) && msg.channel.type != "dm") {
         
-        var cmd = msg.content.toLowerCase();
+        var cmd = msg.content.toLowerCase().split(" ");
 
-        if ( cmd == `<@!` + client.user.id + `> info`) {
+        if ( cmd == "<@!" + client.user.id + ">") {
             switch (cmd[1]) {
                 case "info":        
-                    noPingMsg.send(msg, _);
-                    delete _;
+                    noPingMsg.send(msg, botInformationEmbed);
                     console.log(msg.author.username + " asked for info.")
                 default:
                     //msg.reply("Hope is the only way.");
